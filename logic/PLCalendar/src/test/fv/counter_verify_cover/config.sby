@@ -1,0 +1,12 @@
+[options]
+mode=cover
+
+[engines]
+smtbmc
+
+[script]
+read -formal -vhdl ../../rtl/binary_counter.vhd
+prep -top binary_counter
+
+[files]
+../../rtl/binary_counter.vhd

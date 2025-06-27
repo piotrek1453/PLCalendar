@@ -1,16 +1,49 @@
-#!/usr/bin/tclsh
+#!/opt/gowin-eda-ide/bin/gw_sh
 # build_gowin.tcl - Gowin FPGA build and programming script
 
-# Simple argument parsing
+proc show_help {} {
+    puts "\nUsage: ./build_gowin.tcl \[OPTIONS\]"
+    puts "Options:"
+    puts "  -h      Show this help message"
+    puts "  -s      Run synthesis only (generate bitstream)"
+    puts "  -p      Program FPGA only (requires existing bitstream)"
+    puts "  -f      Program to flash memory (use with -p)"
+    puts ""
+    puts "If no options are provided, runs full flow (synthesis + programming to RAM)"
+    puts ""
+    puts "Examples:"
+    puts "  ./build_gowin.tcl -s    # Synthesize project"
+    puts "  ./build_gowin.tcl -p    # Program FPGA (RAM)"
+    puts "  ./build_gowin.tcl -p -f # Program FPGA (Flash)"
+    puts "  ./build_gowin.tcl       # Full synthesis + programming to RAM (default)"
+    exit 0
+}
+
+# Argument parsing
 set do_synth 0
 set do_prog 0
 set do_flash 0
 set force_mode 0
 
 foreach arg $argv {
-    if {$arg eq "-s"} {set do_synth 1; set force_mode 1}
-    if {$arg eq "-p"} {set do_prog 1; set force_mode 1}
-    if {$arg eq "-f"} {set do_flash 1}
+    switch -- $arg {
+        "-h" {show_help}
+        "-s" {set do_synth 1; set force_mode 1}
+        "-p" {set do_prog 1; set force_mode 1}
+        "-f" {set do_flash 1}
+        default {
+            puts "ERROR: Unknown option '$arg'"
+            show_help
+            exit 1
+        }
+    }
+}
+
+# Validate argument combinations
+if {$do_flash && !$do_prog} {
+    puts "ERROR: -f can only be used with -p"
+    show_help
+    exit 1
 }
 
 # 1. Find project file

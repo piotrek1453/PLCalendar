@@ -1,0 +1,17 @@
+[tasks]
+cover
+prove
+
+[options]
+cover: mode=cover
+prove: mode=prove
+
+[engines]
+smtbmc
+
+[script]
+read -formal -vhdl ../../rtl/binary_counter.vhd
+prep -top binary_counter
+
+[files]
+../../rtl/binary_counter.vhd

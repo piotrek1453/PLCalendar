@@ -1,0 +1,2 @@
+SBY 19:37:21 [counter_verify_cover] Removing directory '/home/juchap/kodzenie/fpga/tang_nano_9k/PLCalendar/logic/PLCalendar/src/test/fv/counter_verify_cover'.
+SBY 19:37:21 [counter_verify_cover] ERROR: sby file syntax error: '[options]' section entry does not have an argument 'mode=cover'

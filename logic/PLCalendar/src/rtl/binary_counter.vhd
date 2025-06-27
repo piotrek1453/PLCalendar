@@ -40,10 +40,10 @@ begin
     end if;
   end process;
 
-  counter_fsm_combinatorial : process (current_state, counter_reg, next_counter, next_overflow, next_state) is
+  counter_fsm_combinatorial : process (all) is
   begin
-    next_state    <= current_state;
-    next_counter  <= counter_reg;
+    next_state <= current_state;
+    -- next_counter  <= counter_reg;
     next_overflow <= '0';
 
     case current_state is
@@ -66,10 +66,6 @@ begin
         next_overflow <= '1';
         next_state    <= S_COUNT;
 
-      when others =>
-        next_state    <= next_state;
-        next_counter  <= next_counter;
-        next_overflow <= next_overflow;
     end case;
   end process;
 
