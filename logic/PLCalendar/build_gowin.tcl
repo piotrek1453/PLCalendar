@@ -1,4 +1,4 @@
-#!/opt/gowin-eda-ide/bin/gw_sh
+#!/usr/bin/env gw_sh
 # build_gowin.tcl - Gowin FPGA build and programming script
 
 proc show_help {} {

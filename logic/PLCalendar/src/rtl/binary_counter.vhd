@@ -1,21 +1,24 @@
 library ieee;
   use ieee.std_logic_1164.all;
   use ieee.numeric_std.all;
+  use ieee.math_real.all;
 
 entity binary_counter is
   generic (
-    counter_len : integer := 32
+    max_value : integer := 27000000 -- 1s tick with 27 MHz
   );
   port (
     clk_in       : in    std_logic;
     count_enable : in    std_logic;
     reset_in     : in    std_logic;
-    count_out    : out   std_logic_vector(counter_len - 1 downto 0);
-    overflow_out : out   std_logic
+    overflow_out : out   std_logic;
+    count_out    : out   std_logic
   );
 end entity binary_counter;
 
 architecture rtl of binary_counter is
+
+  constant counter_width : integer := integer(ceil(log2(real(max_value))));
 
   type counter_state_t is (s_reset, s_count, s_overflow);
 
@@ -23,12 +26,11 @@ architecture rtl of binary_counter is
   attribute syn_encoding of counter_state_t : type is "onehot";
   signal current_state, next_state : counter_state_t;
 
-  signal counter_reg,   next_counter  : std_logic_vector(counter_len - 1 downto 0);
+  signal counter_reg,   next_counter  : std_logic_vector(counter_width - 1 downto 0);
   signal overflow_reg,  next_overflow : std_logic;
 
 begin
 
-  count_out    <= counter_reg;
   overflow_out <= overflow_reg;
 
   counter_fsm_sequential : process (clk_in, reset_in) is
@@ -47,6 +49,7 @@ begin
         counter_reg   <= next_counter;
         overflow_reg  <= next_overflow;
       end if;
+      count_out <= counter_reg;
     end if;
 
   end process counter_fsm_sequential;
@@ -68,14 +71,14 @@ begin
 
       when s_count =>
 
-        next_counter  <= std_logic_vector(unsigned(counter_reg) + to_unsigned(1, counter_len));
-        next_overflow <= '0';
-
-        if (counter_reg = (counter_reg'range => '1')) then
+        if (unsigned(counter_reg) = to_unsigned(max_value - 1, counter_width)) then
           next_state <= s_overflow;
         else
           next_state <= s_count;
         end if;
+
+        next_counter  <= std_logic_vector(unsigned(counter_reg) + 1);
+        next_overflow <= '0';
 
       when s_overflow =>
 

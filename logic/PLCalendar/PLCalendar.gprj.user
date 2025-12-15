@@ -3,15 +3,14 @@
 <UserConfig>
     <Version>1.0</Version>
     <FlowState>
-        <Process ID="Synthesis" State="2"/>
-        <Process ID="Pnr" State="2"/>
-        <Process ID="Gao" State="2"/>
+        <Process ID="Synthesis" State="3"/>
+        <Process ID="Pnr" State="4"/>
+        <Process ID="Gao" State="4"/>
         <Process ID="Rtl_Gao" State="2"/>
         <Process ID="Gvio" State="0"/>
         <Process ID="Place" State="2"/>
     </FlowState>
     <ResultFileList>
-        <ResultFile ResultFileType="RES.netlist" ResultFilePath="impl/gwsynthesis/PLCalendar.vg"/>
         <ResultFile ResultFileType="RES.pnr.bitstream" ResultFilePath="impl/pnr/PLCalendar.fs"/>
         <ResultFile ResultFileType="RES.pnr.pin.rpt" ResultFilePath="impl/pnr/PLCalendar.pin.html"/>
         <ResultFile ResultFileType="RES.pnr.posp.bin" ResultFilePath="impl/pnr/PLCalendar.db"/>
@@ -19,8 +18,6 @@
         <ResultFile ResultFileType="RES.pnr.report" ResultFilePath="impl/pnr/PLCalendar.rpt.html"/>
         <ResultFile ResultFileType="RES.pnr.timing.paths" ResultFilePath="impl/pnr/PLCalendar.timing_paths"/>
         <ResultFile ResultFileType="RES.pnr.timing.rpt" ResultFilePath="impl/pnr/PLCalendar.tr.html"/>
-        <ResultFile ResultFileType="RES.syn.report" ResultFilePath="impl/gwsynthesis/PLCalendar_syn.rpt.html"/>
-        <ResultFile ResultFileType="RES.syn.resource" ResultFilePath="impl/gwsynthesis/PLCalendar_syn_rsc.xml"/>
     </ResultFileList>
     <Ui></Ui>
     <FpUi></FpUi>

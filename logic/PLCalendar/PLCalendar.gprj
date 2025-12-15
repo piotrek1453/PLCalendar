@@ -5,8 +5,8 @@
     <Version>5</Version>
     <Device name="GW1NR-9C" pn="GW1NR-LV9QN88PC6/I5">gw1nr9c-004</Device>
     <FileList>
-        <File path="src/rtl/bin_to_7seg.vhd" type="file.vhdl" enable="1"/>
         <File path="src/rtl/binary_counter.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/rtl/display_driver.vhd" type="file.vhdl" enable="1"/>
         <File path="src/rtl/top.vhd" type="file.vhdl" enable="1"/>
     </FileList>
 </Project>
