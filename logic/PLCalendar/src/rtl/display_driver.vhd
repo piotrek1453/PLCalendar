@@ -4,9 +4,8 @@ library ieee;
 
 entity display_driver is
   generic (
-    overflow_value     : integer := 9;
-    clock_frequency    : integer := 27000000;
-    invert_segment_out : boolean := TRUE
+    overflow_value     : integer range 0 to 9 := 9;
+    invert_segment_out : boolean              := TRUE
   );
   port (
     clk_in              : in    std_logic;
@@ -24,15 +23,16 @@ architecture rtl of display_driver is
 
 begin
 
-  sec_counter_inst : entity work.binary_counter(rtl)
+  counter_inst : entity work.binary_counter(rtl)
     generic map (
-      max_value => clock_frequency
+      max_value => overflow_value
     )
     port map (
       clk_in       => clk_in,
       count_enable => '1',
       reset_in     => reset_in,
-      overflow_out => overflow_out
+      overflow_out => overflow_out,
+      count_out    => count
     );
 
   decoder_proc : process (count, dot_in) is

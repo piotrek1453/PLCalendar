@@ -1,0 +1,4 @@
+rule:
+  # disable enforcing component instantiation
+  instantiation_034:
+    disable: true

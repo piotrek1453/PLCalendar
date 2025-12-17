@@ -5,14 +5,14 @@ library ieee;
 
 entity binary_counter is
   generic (
-    max_value : integer := 27000000 -- 1s tick with 27 MHz
+    max_value : positive := 27000000 -- 1s tick with 27 MHz
   );
   port (
     clk_in       : in    std_logic;
     count_enable : in    std_logic;
     reset_in     : in    std_logic;
     overflow_out : out   std_logic;
-    count_out    : out   std_logic
+    count_out    : out   std_logic_vector(integer(ceil(log2(real(max_value)))) - 1 downto 0)
   );
 end entity binary_counter;
 
@@ -32,6 +32,7 @@ architecture rtl of binary_counter is
 begin
 
   overflow_out <= overflow_reg;
+  count_out    <= counter_reg;
 
   counter_fsm_sequential : process (clk_in, reset_in) is
   begin
@@ -49,7 +50,6 @@ begin
         counter_reg   <= next_counter;
         overflow_reg  <= next_overflow;
       end if;
-      count_out <= counter_reg;
     end if;
 
   end process counter_fsm_sequential;
