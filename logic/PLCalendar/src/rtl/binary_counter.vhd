@@ -9,8 +9,8 @@ entity binary_counter is
   );
   port (
     clk_in       : in    std_logic;
-    count_enable : in    std_logic;
     reset_in     : in    std_logic;
+    count_enable : in    std_logic;
     overflow_out : out   std_logic;
     count_out    : out   std_logic_vector(integer(ceil(log2(real(max_value)))) - 1 downto 0)
   );
@@ -41,9 +41,6 @@ begin
       current_state <= s_reset;
       counter_reg   <= (others => '0');
       overflow_reg  <= '0';
-      next_counter  <= (others => '0');
-      next_overflow <= '0';
-      next_state    <= s_reset;
     elsif rising_edge(clk_in) then
       if (count_enable = '1') then
         current_state <= next_state;

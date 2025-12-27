@@ -8,5 +8,6 @@
         <File path="src/rtl/binary_counter.vhd" type="file.vhdl" enable="1"/>
         <File path="src/rtl/display_driver.vhd" type="file.vhdl" enable="1"/>
         <File path="src/rtl/top.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/PLCalendar.cst" type="file.cst" enable="1"/>
     </FileList>
 </Project>

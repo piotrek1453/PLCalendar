@@ -1,0 +1,45 @@
+
+IO_LOC  "field_enable_out[7]" 25;
+IO_PORT "field_enable_out[7]" DRIVE=4 IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+IO_LOC  "field_enable_out[6]" 26;
+IO_PORT "field_enable_out[6]" DRIVE=4 IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+IO_LOC  "field_enable_out[5]" 27;
+IO_PORT "field_enable_out[5]" DRIVE=4 IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+IO_LOC  "field_enable_out[4]" 28;
+IO_PORT "field_enable_out[4]" DRIVE=4 IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+IO_LOC  "field_enable_out[3]" 29;
+IO_PORT "field_enable_out[3]" DRIVE=4 IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+IO_LOC  "field_enable_out[2]" 30;
+IO_PORT "field_enable_out[2]" DRIVE=4 IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+IO_LOC  "field_enable_out[1]" 33;
+IO_PORT "field_enable_out[1]" DRIVE=4 IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+IO_LOC  "field_enable_out[0]" 34;
+IO_PORT "field_enable_out[0]" DRIVE=4 IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+IO_LOC  "digit_enable_out[3]" 38;
+IO_PORT "digit_enable_out[3]" DRIVE=4 IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+IO_LOC  "digit_enable_out[2]" 37;
+IO_PORT "digit_enable_out[2]" DRIVE=4 IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+IO_LOC  "digit_enable_out[1]" 36;
+IO_PORT "digit_enable_out[1]" DRIVE=4 IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+IO_LOC  "digit_enable_out[0]" 39;
+IO_PORT "digit_enable_out[0]" DRIVE=4 IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+IO_LOC  "reset_in" 4;
+IO_PORT "reset_in" IO_TYPE=LVCMOS18;
+
+IO_LOC  "clk_in" 52;
+IO_PORT "clk_in" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+IO_LOC "led_out" 10;
+IO_PORT "led_out" DRIVE=4 IO_TYPE=LVCMOS18;

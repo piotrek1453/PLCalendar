@@ -5,11 +5,12 @@ library ieee;
 entity display_driver is
   generic (
     overflow_value     : integer range 0 to 9 := 9;
-    invert_segment_out : boolean              := TRUE
+    invert_segment_out : boolean              := FALSE
   );
   port (
     clk_in              : in    std_logic;
     reset_in            : in    std_logic;
+    count_enable        : in    std_logic;
     dot_in              : in    std_logic;
     display_segment_out : out   std_logic_vector(7 downto 0);
     overflow_out        : out   std_logic
@@ -29,8 +30,8 @@ begin
     )
     port map (
       clk_in       => clk_in,
-      count_enable => '1',
       reset_in     => reset_in,
+      count_enable => count_enable,
       overflow_out => overflow_out,
       count_out    => count
     );
@@ -38,7 +39,7 @@ begin
   decoder_proc : process (count, dot_in) is
   begin
 
-    display_segments(0) <= not dot_in;
+    display_segments(0) <= dot_in;
 
     case count is
 
